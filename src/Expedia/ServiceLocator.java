@@ -44,6 +44,11 @@ public class ServiceLocator {
 		discounts.add(aDiscount);	
 	}
 	
+	public void ResetDiscounts()
+	{
+		discounts = new LinkedList<Discount>();
+	}
+	
 	public void AddFlight(Flight aFlight)
 	{
 		flights.add(aFlight);	

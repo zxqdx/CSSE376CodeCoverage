@@ -110,6 +110,28 @@ public class UserTest
 	}
 	
 	@Test
+	public void TestThatSecondDiscountIsNotAppliedOne()
+	{
+		ServiceLocator.Instance().ResetDiscounts();
+		Discount target = new Discount(0.02, 1);
+		ServiceLocator.Instance().AddDiscount(target);
+		Discount target2 = new Discount(0.015, 1);
+		ServiceLocator.Instance().AddDiscount(target2);
+		this.target.book(new Booking[]{new Flight(StartDate, EndDate, 100), new Hotel(5), new Car(3)});
+		assertEquals(1014.3, this.target.Price(), 0.01);
+	}
+	
+	@Test
+	public void TestThatSecondDiscountIsNotAppliedTwo()
+	{
+		ServiceLocator.Instance().ResetDiscounts();
+		Discount target = new Discount(0.02, 120);
+		ServiceLocator.Instance().AddDiscount(target);
+		this.target.book(new Booking[]{new Flight(StartDate, EndDate, 100), new Hotel(5), new Car(3)});
+		assertEquals(1035, this.target.Price(), 0.01);
+	}
+	
+	@Test
 	public void TestDoubleMilesWhenMilageDoesNotExceed()
 	{
 		Flight flight = new Flight(StartDate, EndDate, 1200);
