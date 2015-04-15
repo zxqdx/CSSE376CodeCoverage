@@ -3,6 +3,7 @@ package ExpediaTest;
 import static org.junit.Assert.*;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -74,23 +75,17 @@ public class FlightTest {
 		Assert.assertEquals(300, target.getBasePrice(), 0.0001);
 	}
 	
-	/*@Test
+	@Test
 	public void TestThatFlightDoesGetNumberOfPassengers()
 	{
-		var mockDatabase = mocks.StrictMock<IDatabase>();
 		
-		var values = new List<String>();
-		for(var i = 0; i < 50; i++)
-			values.Add("Bob");
+		List<String> values = new ArrayList<String>();
+		for(int i = 0; i < 50; i++)
+			values.add("Bob");
 		
-		Expect.Call(mockDatabase.Passengers).Return(values);
-		mocks.ReplayAll();
-		
-		var target = new Flight(Date.Now, Date.Now.AddDays(1), 0);
-		
-		target.Database = mockDatabase;
-		Assert.AreEqual(50, target.NumberOfPassengers);
-	}*/
+		Flight target = new Flight(new Date(2015,1,1), new Date(2015,1,6), 0);
+		Assert.assertEquals(50, target.NumberOfPassengers());
+	}
 	
 	@After
 	public void TearDown()
