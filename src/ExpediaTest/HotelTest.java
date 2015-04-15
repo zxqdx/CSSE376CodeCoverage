@@ -85,6 +85,7 @@ public class HotelTest
         Assert.assertEquals("Empty room", result);
 
         //mocks.VerifyAll();
+        EasyMock.verify(mockDB);
     }
 //    @Test
 //    public void TestThatHotelDoesGetRoomCountFromDatabase()
