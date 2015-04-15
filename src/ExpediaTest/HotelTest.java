@@ -48,7 +48,6 @@ public class HotelTest
 	{
 		new Hotel(-5);
 	}
-
 	
 	@Test
     public void TestThatHotelDoesGetRoomOccupantFromTheDatabase()
@@ -87,30 +86,30 @@ public class HotelTest
         //mocks.VerifyAll();
         EasyMock.verify(mockDB);
     }
-//    @Test
-//    public void TestThatHotelDoesGetRoomCountFromDatabase()
-//    {
-//    	IDatabase mockDB = EasyMock.createStrictMock(IDatabase.class);
-//        List<String> Rooms = new LinkedList<String>();
-//        for (int i = 0; i < 100; i++)
-//        {
-//            Rooms.add(i);
-//        }
-//
-//        // FIXME: what is the EasyMock equivalent, if any?
-//        //EasyMock.expect(mockDB.Rooms).PropertyBehavior();
-//
-//        EasyMock.replay(mockDB);
-//
-//        mockDB.Rooms = Rooms;
-//
-//
-//        var target = new Hotel(10);
-//        target.Database = mockDatabase;
-//
-//        int roomCount = target.AvailableRooms;
-//        Assert.AreEqual(Rooms.Count, roomCount);
-//
-//        mocks.VerifyAll();
-//    }
+    @Test
+    public void TestThatHotelDoesGetRoomCountFromDatabase()
+    {
+    	IDatabase mockDB = EasyMock.createStrictMock(IDatabase.class);
+        List<String> Rooms = new LinkedList<String>();
+        for (int i = 0; i < 100; i++)
+        {
+            Rooms.add(String.valueOf(i));
+        }
+
+        // FIXME: what is the EasyMock equivalent, if any?
+//        EasyMock.expect(mockDB.Rooms).PropertyBehavior();
+
+        EasyMock.replay(mockDB);
+
+        mockDB.Rooms = Rooms;
+
+
+        Hotel target = new Hotel(10);
+        target.Database = mockDB;
+
+        int roomCount = target.AvailableRooms();
+        Assert.assertEquals(Rooms.size(), roomCount);
+
+        EasyMock.verify(mockDB);
+    }
 }
