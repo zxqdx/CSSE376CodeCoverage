@@ -37,16 +37,16 @@ public class HotelTest
 	}
 	
 	@Test
-	public void TestThatHotelHasCorrectBasePriceForTenDaysStay()
+	public void TestThatHotelHasCorrectBasePriceForNineDaysStay()
 	{
-		Hotel target = new Hotel(10);
-		Assert.assertEquals(450, target.getBasePrice(), 0.01);
+		Hotel target = new Hotel(9);
+		Assert.assertEquals(400, target.getBasePrice(), 0.01);
 	}
 	
 	@Test(expected=RuntimeException.class)
 	public void TestThatHotelThrowsOnBadLength()
 	{
-		new Hotel(-5);
+		new Hotel(-2);
 	}
 	
 	@Test
